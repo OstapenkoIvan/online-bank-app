@@ -1,145 +1,67 @@
-import {
-  Facebook,
-  Instagram,
-  MailOutline,
-  Phone,
-  Pinterest,
-  Room,
-  Twitter,
-} from "@material-ui/icons";
+import styles from "style";
+import { logo } from "assets";
+import { footerLinks, socialMedia } from "constants";
 
-import styled from "styled-components";
-import { mobile } from "../responsive";
+const Footer = () => (
+  <section className={`${styles.flexCenter} ${styles.paddingY} flex-col`}>
+    <div className={`${styles.flexStart} mb-8 w-full flex-col md:flex-row`}>
+      <div className="mr-10 flex flex-[1] flex-col justify-start">
+        <img
+          src={logo}
+          alt="hoobank"
+          className="h-[72.14px] w-[266px] object-contain"
+        />
+        <p className={`${styles.paragraph} mt-4 max-w-[312px]`}>
+          A new way to make the payments easy, reliable and secure.
+        </p>
+      </div>
 
-const Container = styled.div`
-  display: flex;
-  ${mobile({ flexDirection: "column" })}
-`;
+      <div className="mt-10 flex w-full flex-[1.5] flex-row flex-wrap justify-between md:mt-0">
+        {footerLinks.map((footerlink) => (
+          <div
+            key={footerlink.title}
+            className={`ss:my-0 my-4 flex min-w-[150px] flex-col`}
+          >
+            <h4 className="font-poppins text-[18px] font-medium leading-[27px] text-white">
+              {footerlink.title}
+            </h4>
+            <ul className="mt-4 list-none">
+              {footerlink.links.map((link, index) => (
+                <li
+                  key={link.name}
+                  className={`cursor-pointer font-poppins text-[16px] font-normal leading-[24px] text-dimWhite hover:text-secondary ${
+                    index !== footerlink.links.length - 1 ? "mb-4" : "mb-0"
+                  }`}
+                >
+                  {link.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
 
-const Left = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-`;
+    <div className="flex w-full flex-col items-center justify-between border-t-[1px] border-t-[#3F3E45] pt-6 md:flex-row">
+      <p className="text-center font-poppins text-[18px] font-normal leading-[27px] text-white">
+        Copyright Ⓒ 2022 HooBank. All Rights Reserved.
+      </p>
 
-const Logo = styled.h1``;
-
-const Desc = styled.p`
-  margin: 20px 0px;
-`;
-
-const SocialContainer = styled.div`
-  display: flex;
-`;
-
-const SocialIcon = styled.div`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  color: white;
-  background-color: #${(props) => props.color};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 20px;
-`;
-
-const Center = styled.div`
-  flex: 1;
-  padding: 20px;
-  ${mobile({ display: "none" })}
-`;
-
-const Title = styled.h3`
-  margin-bottom: 30px;
-`;
-
-const List = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const ListItem = styled.li`
-  width: 50%;
-  margin-bottom: 10px;
-`;
-
-const Right = styled.div`
-  flex: 1;
-  padding: 20px;
-  ${mobile({ backgroundColor: "#fff8f8" })}
-`;
-
-const ContactItem = styled.div`
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-`;
-
-const Payment = styled.img`
-  width: 50%;
-`;
-
-const Footer = () => {
-  return (
-    <Container>
-      <Left>
-        <Logo>LAMA.</Logo>
-        <Desc>
-          There are many variations of passages of Lorem Ipsum available, but
-          the majority have suffered alteration in some form, by injected
-          humour, or randomised words which don’t look even slightly believable.
-        </Desc>
-        <SocialContainer>
-          <SocialIcon color="3B5999">
-            <Facebook />
-          </SocialIcon>
-          <SocialIcon color="E4405F">
-            <Instagram />
-          </SocialIcon>
-          <SocialIcon color="55ACEE">
-            <Twitter />
-          </SocialIcon>
-          <SocialIcon color="E60023">
-            <Pinterest />
-          </SocialIcon>
-        </SocialContainer>
-      </Left>
-      <Center>
-        <Title>Useful Links</Title>
-        <List>
-          <ListItem>Home</ListItem>
-          <ListItem>Cart</ListItem>
-          <ListItem>Man Fashion</ListItem>
-          <ListItem>Woman Fashion</ListItem>
-          <ListItem>Accessories</ListItem>
-          <ListItem>My Account</ListItem>
-          <ListItem>Order Tracking</ListItem>
-          <ListItem>Wishlist</ListItem>
-          <ListItem>Wishlist</ListItem>
-          <ListItem>Terms</ListItem>
-        </List>
-      </Center>
-      <Right>
-        <Title>Contact</Title>
-        <ContactItem>
-          <Room style={{ marginRight: "10px" }} /> 622 Dixie Path , South
-          Tobinchester 98336
-        </ContactItem>
-        <ContactItem>
-          <Phone style={{ marginRight: "10px" }} /> +1 234 56 78
-        </ContactItem>
-        <ContactItem>
-          <MailOutline style={{ marginRight: "10px" }} /> contact@lama.dev
-        </ContactItem>
-        <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
-      </Right>
-    </Container>
-  );
-};
+      <div className="mt-6 flex flex-row md:mt-0">
+        {socialMedia.map((social, index) => (
+          <img
+            key={social.id}
+            src={social.icon}
+            alt={social.id}
+            className={`h-[21px] w-[21px] cursor-pointer object-contain ${
+              index !== socialMedia.length - 1 ? "mr-6" : "mr-0"
+            }`}
+            onClick={() => window.open(social.link)}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+);
 
 export default Footer;

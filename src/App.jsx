@@ -1,4 +1,4 @@
-import styles from "./style";
+import styles from "style";
 import {
   Billing,
   Business,
@@ -10,10 +10,10 @@ import {
   Stats,
   Testimonials,
   Hero,
-} from "./components";
+} from "components";
 
 const App = () => (
-  <div className="w-full overflow-hidden bg-primary">
+  <main className="w-full overflow-hidden bg-primary">
     <div className={`${styles.paddingX} ${styles.flexCenter}`}>
       <div className={`${styles.boxWidth}`}>
         <Navbar />
@@ -38,7 +38,7 @@ const App = () => (
         <Footer />
       </div>
     </div>
-  </div>
+  </main>
 );
 
 export default App;
